@@ -1,0 +1,64 @@
+{
+    "V": ["Burglary", "Earthquake", "Alarm", "Mary Calls", "John Calls"],
+    "E": [["Burglary", "Alarm"],
+        ["Earthquake", "Alarm"],
+        ["Alarm", "Mary Calls"],
+        ["Alarm", "John Calls"]],
+    "Vdata": {
+        "John Calls": {
+            "ord": 4,
+            "numoutcomes": 2,
+            "vals": ["True", "False"],
+            "parents": ["Alarm"],
+            "children": None,
+            "cprob": {
+                "['True']": [.9, .1],
+                "['False']": [.05, .95]
+            }
+        },
+
+        "Mary Calls": {
+            "ord": 3,
+            "numoutcomes": 2,
+            "vals": ["True", "False"],
+            "parents": ["Alarm"],
+            "children": None,
+            "cprob": {
+                "['True']": [.7, .3],
+                "['False']": [.01, .99]
+            }
+        },
+
+        "Alarm": {
+            "ord": 2,
+            "numoutcomes": 2,
+            "vals": ["True", "False"],
+            "parents": ["Earthquake", "Burglary"],
+            "children": ["Mary Calls", "John Calls"],
+            "cprob": {
+                "['True',  'True']": [.95, .05],
+                "['True',  'False']": [.94, .06],
+                "['False', 'True']": [.29, .71],
+                "['False', 'False']": [.001, .999]
+            }
+        },
+
+        "Earthquake": {
+            "ord": 1,
+            "numoutcomes": 2,
+            "vals": ["True", "False"],
+            "parents": None,
+            "children": ["Alarm"],
+            "cprob": [.002, .998]
+        },
+
+        "Burglary": {
+            "ord": 0,
+            "numoutcomes": 2,
+            "vals": ["True", "False"],
+            "parents": None,
+            "children": ["Alarm"],
+            "cprob":  [.001, .999]
+        }
+    }
+}
