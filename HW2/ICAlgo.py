@@ -1,3 +1,6 @@
+#Developed by Debasmit Das
+#Code forked from https://github.com/keiichishima/pcalg.git 
+This pertains to Problem 2 of HW 2
 
 
 import numpy as np
