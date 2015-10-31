@@ -1,1 +1,48 @@
-This repository contains a set of Programming assignements for the course CS-578B (Statistical Machine Learning) under Elias Barenboim @ Purdue University.
+This folder contains Code and Solutions for Homework2
+I have developed the code in Ubuntu OS
+Following are the instructions for running the code.
+---------------------------------------------------
+__________
+
+Problem 1
+__________
+
+Dependencies
+_____________
+
+Not required as most dependecies are within the sub-directories.
+The BIF Parser was written by [Antoine Bosselut](antoine.bosselut@uw.edu)
+
+Usage
+______
+
+Run python belNetAlgo.py <.bif file path> in the terminal
+The ALARM.bif is located in this directory.
+The query results should be update in the results.txt file in the directory
+
+__________
+
+Problem 2
+__________
+
+Dependecies
+____________
+
+networkx (For graph operations)
+gsq (For conditional independencies)
+itertools (For permutation and combinations)
+
+Usage
+______
+
+For the IC Algorithm, run python ICalgo.py in the terminal
+For the IC* Algorithm, run python ICstar.py in the terminal
+Please change n and p in the main method of the script.
+
+If you have any problems running the code contact : debasmit.das@gmail.com
+
+
+
+
+
+ 

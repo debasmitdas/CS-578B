@@ -8,6 +8,7 @@ import Node
 import sys
 import re
 
+#Original Creator of the BIF 
 __author__ = "Antoine Bosselut"
 __version__ = "1.0.1"
 __maintainer__ = "Antoine Bosselut"

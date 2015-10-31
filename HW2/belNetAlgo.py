@@ -7,13 +7,13 @@ def usage():
     print >>sys.stderr, "Usage: python %s <.bif file path> [-o output file] [-t threshold]\n" % sys.argv[0]
     print >>sys.stderr, "Options:"
     print >>sys.stderr, "   -o, --output \t output file name, default to 'result.txt'"
-    print >>sys.stderr, "   -t, --threshold \t threshold for convergence default to 1e-10"
+    print >>sys.stderr, "   -t, --threshold \t threshold for convergence default to 1e-6"
 
 if len(sys.argv) < 2:
     usage()
     exit()
 
-threshold = 1e-10
+threshold = 1e-6;
 result_file = "result.txt"
 
 for i in range(1, len(sys.argv)):
@@ -42,7 +42,7 @@ BIF = f.readlines()
 BIF = parser.fixWhiteSpace(BIF)
 nodes = parser.parseBIF(BIF)
 f.close()
-#parser.printNodes(nodes)
+#parser.printNodes(nodes) This command can be used to printNodes
 
 graph = bcgraph.BCGraph()
 graph.build_graph_from_BN(nodes)
@@ -61,4 +61,5 @@ while True:
 
 f = open("result.txt", "w")
 print >> f, graph.marginalized_results(nodes)
+#print >> f, graph.show_graph()
 f.close()

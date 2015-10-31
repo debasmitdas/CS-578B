@@ -132,7 +132,11 @@ def estimate_cpdag(skel_graph, sep_set):
     # For all the combination of nodes i and j, apply the following
     # rules.
     for (i, j) in combinations(node_ids, 2):
-        # Rule 1: Orient i-j into i->j whenever there is an arrow k->i
+        # Rule 1: For each pair of non-adjacent nodes a and b with a common
+        #neighbor c, if the link between a and c has an arrowhead into c and if
+        #the link between c and b has no arrowhead into c, then add an
+        #arrowhead on the link between c and b pointing to b and mark that
+        #link to obtain c (star) b
         # such that k and j are nonadjacent.
         #
         # Check if i-j.
@@ -148,10 +152,14 @@ def estimate_cpdag(skel_graph, sep_set):
                 # Make i-j into i->j
                 _logger.debug('R1: remove edge (%s, %s)' % (j, i))
                 dag.remove_edge(j, i)
+                dag.remove_edge(i,j)
+                dag.add_edge(i,j,weight=0)
                 break
             pass
 
-        # Rule 2: Orient i-j into i->j whenever there is a chain
+        # Rule 2:  If a and b are adjacent and there is a directed path (composed
+        #strictly of marked links) from a to b, then add an arrowhead pointing
+        #toward b on the link between a and b
         # i->k->j.
         #
         # Check if i-j.
@@ -175,6 +183,8 @@ def estimate_cpdag(skel_graph, sep_set):
                 # Make i-j into i->j
                 _logger.debug('R2: remove edge (%s, %s)' % (j, i))
                 dag.remove_edge(j, i)
+                dag.remove_edge(i,j)
+                dag.add_edge(i,j,weight=0)
                 break
             pass
 
@@ -182,7 +192,7 @@ def estimate_cpdag(skel_graph, sep_set):
         # i-k->j and i-l->j such that k and l are nonadjacent.
         #
         # Check if i-j.
-        if _has_both_edges(dag, i, j):
+        """if _has_both_edges(dag, i, j):
             # Find nodes k where i-k.
             adj_i = set()
             for k in dag.successors(i):
@@ -204,8 +214,10 @@ def estimate_cpdag(skel_graph, sep_set):
                 # Make i-j into i->j.
                 _logger.debug('R3: remove edge (%s, %s)' % (j, i))
                 dag.remove_edge(j, i)
+                dag.remove_edge(i,j)
+                dag.add_edge(i,j,weight=0)
                 break
-            pass
+            pass"""
 
         # Rule 4: Orient i-j into i->j whenever there are two chains
         # i-k->l and k->l->j such that k and j are nonadjacent.
